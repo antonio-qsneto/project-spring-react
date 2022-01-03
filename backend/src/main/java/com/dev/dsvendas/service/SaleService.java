@@ -1,6 +1,10 @@
 package com.dev.dsvendas.service;
 
+import java.util.List;
+
 import com.dev.dsvendas.dto.SaleDTO;
+import com.dev.dsvendas.dto.SaleSuccessDTO;
+import com.dev.dsvendas.dto.SaleSumDTO;
 import com.dev.dsvendas.entities.Sale;
 import com.dev.dsvendas.repositories.SaleRepository;
 import com.dev.dsvendas.repositories.SellerRepository;
@@ -27,6 +31,13 @@ public class SaleService {
                 return result.map( x -> new SaleDTO(x));
         }
 
-        
+        @Transactional(readOnly = true)
+        public List<SaleSumDTO> amountGroupedBySeller() {
+                return repository.amountGroupedBySeller();
+        }
+
+        public List<SaleSuccessDTO> successGroupedBySeller() {
+                return repository.successGroupedBySeller();
+        }
         
 }
